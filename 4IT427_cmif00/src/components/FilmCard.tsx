@@ -1,24 +1,24 @@
-type Rating = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+import type { Film } from '@/types/film.types'
 
 interface FilmCardProps {
+  id: string;
   title: string;
   year: number;
   genre: string;
-  rating: Rating;
+  rating: number;
   watched: boolean;
   onToggleWatched: (title: string) => void;
 }
 
-function FilmCard({ title, year, genre, rating, watched, onToggleWatched }: FilmCardProps) {
+export function FilmCard({ id, title, year, genre, rating, watched , onToggleWatched}: FilmCardProps) {
+  const isRatingValid = rating >= 1 && rating <= 10;
+
   return (
     <h2>{title} ({year})
         <p>Genre: {genre} </p>
-        <p>Rating: {rating}/10 ⭐</p>
+        <p>Rating: {isRatingValid ? `${rating}/10 ⭐` : 'Invalid rating'}</p>
         <p>{watched === true ? '✓ Watched' : ''}</p>
-        <button onClick={() => onToggleWatched(title)}> Change watched status</button>
+        {<button onClick={() => onToggleWatched(id)}> Change watched status</button>}
     </h2>
   );
 }
-
-export { FilmCard }
-export type { FilmCardProps }
