@@ -1,3 +1,4 @@
+/*
 import type { Film } from '@/types/film.types';
 import { useEffect, useState } from 'react'
 
@@ -6,10 +7,10 @@ import { useEffect, useState } from 'react'
 export function useWatchlist(initialFilms: Film[]) {
   const [films, setFilms] = useState<Film[]>(initialFilms);
 
-  const toggleWatched = (title: string) => {
+  const toggleWatched = (id: string) => {
     setFilms((prevFilms) =>
       prevFilms.map((film) =>
-        film.title === title
+        film.id === id
           ? { ...film, watched: !film.watched }
           : film
       )
@@ -29,7 +30,7 @@ export function useWatchlist(initialFilms: Film[]) {
     const watchedCount = films.filter((film) => film.watched).length;
     const totalCount = films.length;
 
-    document.title = `Watchlist (${watchedCount} / ${totalCount} zhlédnuto)`;
+    document.title = `Watchlist (${watchedCount} / ${totalCount} watched)`;
   }, [films]);
 
   return {
@@ -37,5 +38,7 @@ export function useWatchlist(initialFilms: Film[]) {
     toggleWatched,
     markAllAsWatched,
   };
+  
 }
 
+*/

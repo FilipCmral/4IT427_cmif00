@@ -1,5 +1,3 @@
-import type { Film } from '@/types/film.types'
-
 interface FilmCardProps {
   id: string;
   title: string;
@@ -7,10 +5,11 @@ interface FilmCardProps {
   genre: string;
   rating: number;
   watched: boolean;
-  onToggleWatched: (title: string) => void;
+  onToggleWatched: (id: string) => void;
+  onRemoveFilm: (id: string) => void;
 }
 
-export function FilmCard({ id, title, year, genre, rating, watched , onToggleWatched}: FilmCardProps) {
+export function FilmCard({ id, title, year, genre, rating, watched , onToggleWatched, onRemoveFilm}: FilmCardProps) {
   const isRatingValid = rating >= 1 && rating <= 10;
 
   return (
@@ -19,6 +18,7 @@ export function FilmCard({ id, title, year, genre, rating, watched , onToggleWat
         <p>Rating: {isRatingValid ? `${rating}/10 ⭐` : 'Invalid rating'}</p>
         <p>{watched === true ? '✓ Watched' : ''}</p>
         {<button onClick={() => onToggleWatched(id)}> Change watched status</button>}
+        {<button onClick={() => onRemoveFilm(id)}> Remove</button>}
     </h2>
   );
 }

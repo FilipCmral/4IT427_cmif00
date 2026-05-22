@@ -1,39 +1,12 @@
 //import { useState } from 'react'
 import type { Film } from '@/types/film.types'
 import { FilmCard } from '@/components/FilmCard'
-import { useWatchlist } from './hooks/useWatchlist'
+import { useWatchlist } from '@/context/WatchlistContext'
 
 function App() {
-  const movie1: Film = {
-    id: '1',
-    title: "The Shawshank Redemption",
-    year: 1994,
-    genre: "Drama",
-    rating: 9,
-    watched: false,
-}
 
-const movie2: Film = {
-    id: '2',
-    title: "The Godfather",
-    year: 1972,
-    genre: "Crime",
-    rating: 9,
-    watched: true,
-}
 
-const movie3: Film = {
-    id: '3',
-    title: "The Dark Knight",
-    year: 2008,
-    genre: "Action",
-    rating: 9,
-    watched: false,
-}
-
-  const initialFilms: Film[] = [movie1, movie2, movie3];
-
-  const { films, toggleWatched, markAllAsWatched } = useWatchlist(initialFilms);
+  const { films, toggleWatched, markAllAsWatched, removeFilm } = useWatchlist();
 
   return (
     <main>
@@ -50,6 +23,7 @@ const movie3: Film = {
           rating={film.rating}
           watched={film.watched}
           onToggleWatched={toggleWatched}
+          onRemoveFilm={removeFilm(film.id)}
         />
       ))}
     </main>
