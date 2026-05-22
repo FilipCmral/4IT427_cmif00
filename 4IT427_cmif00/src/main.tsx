@@ -1,13 +1,20 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { WatchlistProvider } from './context/WatchlistContext'
-import '@/styles/global.css'
+import { BrowserRouter } from 'react-router-dom'
+
 import App from './App.tsx'
+import { WatchlistProvider } from './context/WatchlistContext'
+
+
+import '@/styles/global.css'
+
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <WatchlistProvider>
-      <App />
-    </WatchlistProvider>
+    <BrowserRouter>
+      <WatchlistProvider>
+        <App />
+      </WatchlistProvider>
+    </BrowserRouter>
   </StrictMode>,
 )

@@ -3,6 +3,8 @@
 .section {
   border-top: 0.5px solid var(--color-border);
   padding-top: 2rem;
+  width: 50%;
+  margin: 0 auto;
 }
 
 .heading {

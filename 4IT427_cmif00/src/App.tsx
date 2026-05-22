@@ -1,59 +1,35 @@
-/* Stylingová metoda: CSS Modules */
+/* -------------- Stylingová metoda: CSS Modules -------------- */
 
 
-import { FilmCard } from '@/components/FilmCard'
-import { useWatchlist } from '@/context/WatchlistContext'
-import { AddFilmForm } from './components/AddFilmForm';
-import styles from './App.module.css';
+
+import { Navigate, NavLink, Route, Routes } from 'react-router-dom';
+
+import { WatchlistPage } from './pages/WatchlistPage';
+import { AddFilmPage } from './pages/AddFilmPage';
+
+import navStyles from './Navbar.module.css';
 
 function App() {
 
-
-  const { films, toggleWatched, markAllAsWatched, removeFilm } = useWatchlist();
-
   return (
     <>
-    <main className={styles.main}>
-      <header className={styles.header}>
-      <h1 className={styles.title}>Film Watchlist</h1>
-      <p className={styles.subtitle}>
-        You have {films.filter((film) => film.watched).length} out of {films.length} films marked as watched.
-      </p>
-      </header>
-
-      <div className={styles.toolbar}>
-        <span /> {/* spacer */}
-        <button className={styles.markAllBtn} onClick={markAllAsWatched}>
-        Mark all as watched
-      </button>
+    <nav className={navStyles.nav}>
+      <div className={navStyles.inner}>
+        <NavLink to="/" end className={({ isActive }) => isActive ? `${navStyles.link} ${navStyles.active}` : navStyles.link}>
+          Watchlist
+        </NavLink>
+        <NavLink to="/form" className={({ isActive }) => isActive ? `${navStyles.link} ${navStyles.active}` : navStyles.link}>
+          Add Films
+        </NavLink>
       </div>
+    </nav>
 
-      
-
-      <div className={styles.filmList}>
-        {films.length === 0 ? (
-          <p className={styles.emptyState}>
-            Watchlist is empty.
-          </p>
-        ) : (
-          films.map((film) => (
-            <FilmCard
-              key={film.id}
-              id={film.id}
-              title={film.title}
-              year={film.year}
-              genre={film.genre}
-              rating={film.rating}
-              watched={film.watched}
-              onToggleWatched={toggleWatched}
-              onRemoveFilm={removeFilm}
-            />
-          ))
-        )}
-      </div>
-
-      <AddFilmForm />
-    </main>
+      <Routes>
+        <Route path="/" element={<WatchlistPage />} />
+        <Route path="/form" element={<AddFilmPage />} />
+        {/*<Route path="/films/:id" element={<Navigate to="/" replace />} />*/}
+        <Route path="*" element={<Navigate to="/" replace />} /> {/* Redirect any unknown routes to the main page */}
+      </Routes>
     </>
   );
 }

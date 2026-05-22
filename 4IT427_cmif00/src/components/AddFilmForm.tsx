@@ -1,10 +1,16 @@
-import type { Film } from '@/types/film.types'
-import { useWatchlist } from '@/context/WatchlistContext';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import type { Film } from '@/types/film.types'
+
+import { useWatchlist } from '@/context/WatchlistContext';
+
 import styles from './AddFilmForm.module.css';
+
 
 export function AddFilmForm() {
   const { addFilm } = useWatchlist();
+  const navigate = useNavigate();
 
   const [title, setTitle] = useState("");
   const [year, setYear] = useState("");
@@ -29,11 +35,14 @@ export function AddFilmForm() {
       };
       addFilm(newFilm);
 
-      // Reset form on sumbmit
+      /*
       setTitle("");
       setYear("");
       setGenre("");
-      setRating("");
+      setRating("");*/
+
+      // Reset form on sumbmit by redirecting
+      navigate('/');
     }}>
 
       <div className={styles.field}> 

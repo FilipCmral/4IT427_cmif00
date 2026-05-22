@@ -1,5 +1,6 @@
-import styles from './FilmCard.module.css';
 import clsx from 'clsx';
+
+import styles from './FilmCard.module.css';
 
 interface FilmCardProps {
   id: string;
