@@ -1,10 +1,14 @@
 import type { Film } from '@/types/film.types'
+import { useWatchlist } from '@/context/WatchlistContext';
+import { useState } from 'react';
 
-interface AddFilmFormProps {
-  onSubmit: (newFilm: Film) => void;
-} 
+export function AddFilmForm() {
+  const { addFilm } = useWatchlist();
 
-export function AddFilmForm({ onSubmit }: AddFilmFormProps) {
+  const [title, setTitle] = useState('');
+  const [year, setYear] = useState('');
+  const [genre, setGenre] = useState('');
+  const [rating, setRating] = useState('');
 
   return (
     <>      
@@ -12,13 +16,13 @@ export function AddFilmForm({ onSubmit }: AddFilmFormProps) {
       e.preventDefault();
       const newFilm: Film = {
         id: Date.now().toString(),
-        title: (e.target as HTMLFormElement).title.value,
-        year: parseInt((e.target as HTMLFormElement).year.value),
-        genre: (e.target as HTMLFormElement).genre.value,
-        rating: parseInt((e.target as HTMLFormElement).rating.value),
+        title: title,
+        year: parseInt(year),
+        genre: genre,
+        rating: parseInt(rating),
         watched: false,
       };
-      onSubmit(newFilm);
+      addFilm(newFilm);
     }}>
       <h2>Add a new film</h2>;
       <div> 
