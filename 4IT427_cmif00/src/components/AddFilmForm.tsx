@@ -5,15 +5,16 @@ import { useState } from 'react';
 export function AddFilmForm() {
   const { addFilm } = useWatchlist();
 
-  const [title, setTitle] = useState('');
-  const [year, setYear] = useState('');
-  const [genre, setGenre] = useState('');
-  const [rating, setRating] = useState('');
+  const [title, setTitle] = useState("");
+  const [year, setYear] = useState("");
+  const [genre, setGenre] = useState("");
+  const [rating, setRating] = useState("");
 
   return (
     <>      
-    <form onSubmit={(e) => {
-      e.preventDefault();
+    <form onSubmit={(event) => {
+      event.preventDefault();
+      
       const newFilm: Film = {
         id: Date.now().toString(),
         title: title,
@@ -23,6 +24,12 @@ export function AddFilmForm() {
         watched: false,
       };
       addFilm(newFilm);
+
+      // Reset form on sumbmit
+      setTitle("");
+      setYear("");
+      setGenre("");
+      setRating("");
     }}>
       <h2>Add a new film</h2>;
       <div> 

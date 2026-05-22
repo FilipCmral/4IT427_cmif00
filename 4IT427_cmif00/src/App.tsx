@@ -1,7 +1,6 @@
-//import { useState } from 'react'
-import type { Film } from '@/types/film.types'
 import { FilmCard } from '@/components/FilmCard'
 import { useWatchlist } from '@/context/WatchlistContext'
+import { AddFilmForm } from './components/AddFilmForm';
 
 function App() {
 
@@ -23,9 +22,11 @@ function App() {
           rating={film.rating}
           watched={film.watched}
           onToggleWatched={toggleWatched}
-          onRemoveFilm={removeFilm(film.id)}
+          onRemoveFilm={() =>  removeFilm(film.id)}
         />
       ))}
+
+      <AddFilmForm></AddFilmForm>
     </main>
   );
 }
