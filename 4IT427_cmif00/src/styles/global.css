@@ -1,0 +1,54 @@
+/* ─── Slate Design System ─── */
+/* Import v main.tsx: import '@/styles/global.css' */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&display=swap');
+
+:root {
+  /* Barvy */
+  --color-bg-page:      #F6F7F9;
+  --color-bg-surface:   #FFFFFF;
+  --color-bg-subtle:    #EEF1F6;
+
+  --color-border:       #DDE1E8;
+  --color-border-hover: #B0B8CC;
+
+  --color-text-primary:   #1A2030;
+  --color-text-secondary: #7A8299;
+  --color-text-muted:     #A8B0C4;
+
+  --color-accent:         #378ADD;
+  --color-accent-light:   #E6F1FB;
+  --color-accent-dark:    #185FA5;
+
+  --color-success:        #3B6D11;
+  --color-success-light:  #EAF3DE;
+
+  --color-danger:         #A32D2D;
+  --color-danger-light:   #FCEBEB;
+
+  /* Typografie */
+  --font:        'DM Sans', system-ui, sans-serif;
+
+  /* Rozměry */
+  --radius-sm:   6px;
+  --radius-md:   10px;
+  --radius-lg:   14px;
+
+  /* Přechody */
+  --transition:  150ms ease;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--color-bg-page);
+  color: var(--color-text-primary);
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
